@@ -20,6 +20,7 @@
 		0215A3C8221C1CDB001FB613 /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0215A3C7221C1CDB001FB613 /* ContactListViewController.swift */; };
 		027023AB221C4A2F00EF3AE8 /* ContactData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027023AA221C4A2F00EF3AE8 /* ContactData.swift */; };
 		027023AD221C4A4300EF3AE8 /* ContactFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027023AC221C4A4300EF3AE8 /* ContactFunction.swift */; };
+		02709A8A221D6967008BC058 /* CustomGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02709A89221D6967008BC058 /* CustomGradient.swift */; };
 		9C5AF35F8BC833EC7D4BEAE6 /* Pods_BirthDayReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43295372C5B5E1D80213F80 /* Pods_BirthDayReminder.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		0215A3C7221C1CDB001FB613 /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 		027023AA221C4A2F00EF3AE8 /* ContactData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactData.swift; sourceTree = "<group>"; };
 		027023AC221C4A4300EF3AE8 /* ContactFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFunction.swift; sourceTree = "<group>"; };
+		02709A89221D6967008BC058 /* CustomGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradient.swift; sourceTree = "<group>"; };
 		49D12664BFA3CA6E48910E8A /* Pods-BirthDayReminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirthDayReminder.debug.xcconfig"; path = "Target Support Files/Pods-BirthDayReminder/Pods-BirthDayReminder.debug.xcconfig"; sourceTree = "<group>"; };
 		6F449B70AD91AA0C360FC511 /* Pods-BirthDayReminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BirthDayReminder.release.xcconfig"; path = "Target Support Files/Pods-BirthDayReminder/Pods-BirthDayReminder.release.xcconfig"; sourceTree = "<group>"; };
 		B43295372C5B5E1D80213F80 /* Pods_BirthDayReminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BirthDayReminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +90,7 @@
 				0215A3C32216F509001FB613 /* AddRemainderViewController.swift */,
 				0215A3C52216F521001FB613 /* RemainderListViewController.swift */,
 				0215A3C7221C1CDB001FB613 /* ContactListViewController.swift */,
+				02709A89221D6967008BC058 /* CustomGradient.swift */,
 			);
 			path = BirthDayReminder;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02709A8A221D6967008BC058 /* CustomGradient.swift in Sources */,
 				0215A3AC2216DDE3001FB613 /* ViewController.swift in Sources */,
 				0215A3C8221C1CDB001FB613 /* ContactListViewController.swift in Sources */,
 				027023AD221C4A4300EF3AE8 /* ContactFunction.swift in Sources */,

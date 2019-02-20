@@ -30,17 +30,21 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrContact.count
+        return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactList")as! ContactTableCell
+        
+        cell.layer.borderColor = UIColor.white.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 20
         
         if arrContact.count == 0{
             
         }
         else{
-            cell.lblFName.text = arrContact[indexPath.row].FirstName
-            cell.lblLName.text = arrContact[indexPath.row].LastName
+            cell.lblFName.text = arrContact[indexPath.section].FirstName
+            cell.lblLName.text = arrContact[indexPath.section].LastName
             cell.imgContact.image = #imageLiteral(resourceName: "User")
             
             return cell
@@ -54,7 +58,7 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
             
         }
         else{
-            let Id = arrContact[indexPath.row].Id
+            let Id = arrContact[indexPath.section].Id
             UserDefaults.standard.setValue(Id, forKey: "SelectedId")
             self.performSegue(withIdentifier: "UWtoAddRemainder", sender: self)
             
@@ -62,15 +66,18 @@ class ContactListViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return arrContact.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView;
     }
     
     

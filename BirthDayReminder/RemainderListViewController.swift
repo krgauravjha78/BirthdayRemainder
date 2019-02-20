@@ -27,21 +27,26 @@ class RemainderListViewController: UIViewController, UITableViewDataSource, UITa
     
     // MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return arrRemainder.count
+            return 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RemainderList")as! RemainderTableCell
+        
+        cell.layer.borderColor = UIColor.white.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 25
         
         if arrRemainder.count == 0{
             
         }
         else{
-            cell.lblFName.text = arrRemainder[indexPath.row].FirstName
-            cell.lblLName.text = arrRemainder[indexPath.row].LastName
-            cell.lblEmail.text = arrRemainder[indexPath.row].EmailId
-            cell.lblBirthDate.text = arrRemainder[indexPath.row].Date
+            cell.lblFName.text = arrRemainder[indexPath.section].FirstName
+            cell.lblLName.text = arrRemainder[indexPath.section].LastName
+            cell.lblEmail.text = arrRemainder[indexPath.section].EmailId
+            cell.lblBirthDate.text = arrRemainder[indexPath.section].Date
             
-            let Occassion = arrRemainder[indexPath.row].Occasion
+            let Occassion = arrRemainder[indexPath.section].Occasion
             
             if Occassion == "Birthday"  {
                 cell.imgOccasion.image = #imageLiteral(resourceName: "BirthDay")
@@ -58,12 +63,21 @@ class RemainderListViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return arrRemainder.count
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
     }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView;
+    }
+    
+    
     
 
     // MARK: - Button Action
@@ -71,11 +85,33 @@ class RemainderListViewController: UIViewController, UITableViewDataSource, UITa
         performSegue(withIdentifier: "AddRemainder", sender: self)
     }
     
-    // MARK: - UnWind Method
-    @IBAction func unwindtoRemainderlist(segue:UIStoryboardSegue) {
+    @IBAction func btnRefreshClicked(_ sender: Any) {
+        searchRemainder.text = ""
         arrRemainder = RealmFunctionsForRemainderTable.sharedInstance.QueryDataFromRemainderTable()
         self.tblRemainderList.reloadData()
     }
+    
+    
+    // MARK: - UnWind Method
+    @IBAction func unwindtoRemainderlist(segue:UIStoryboardSegue) {
+        searchRemainder.text = ""
+        arrRemainder = RealmFunctionsForRemainderTable.sharedInstance.QueryDataFromRemainderTable()
+        self.tblRemainderList.reloadData()
+    }
+    
+    // MARK: - SearchBar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            if searchText.count == 0{
+                arrRemainder = RealmFunctionsForRemainderTable.sharedInstance.QueryDataFromRemainderTable()
+            }
+            else{
+                let predicate = NSPredicate (format: "(SELF.FirstName contains[c] %@) OR (SELF.LastName contains[c] %@)", searchText, searchText)
+                arrRemainder = arrRemainder.filter(predicate)
+                tblRemainderList.reloadData()
+            }
+    }
+    
+    
     
 }
 

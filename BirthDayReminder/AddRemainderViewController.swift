@@ -9,8 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AddRemainderViewController: UIViewController {
-    
+class AddRemainderViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //MARK: Outlets
     @IBOutlet var btnBack: UIButton!
@@ -27,16 +26,26 @@ class AddRemainderViewController: UIViewController {
     @IBOutlet var txtEmail: UITextField!
     @IBOutlet var txtOccassion: UITextField!
     @IBOutlet var txtDate: UITextField!
+    var gradePicker: UIPickerView!
     
     //MARK: Variables
     var celebrationArr = [String: String]()
     var contactArr : Results<Contact_Tbl>!
+    let pickerValues = ["Birthday", "Anniversary", "Promotion"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let datePickerView = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePicker.Mode.date
+        txtDate.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(self.datePickerValueChanged), for: UIControl.Event.valueChanged)
+        
+        gradePicker = UIPickerView()
+        gradePicker.dataSource = self
+        gradePicker.delegate = self
+        txtOccassion.inputView = gradePicker
+        txtOccassion.text = pickerValues[0]
     }
     
     
@@ -88,7 +97,31 @@ class AddRemainderViewController: UIViewController {
         UserDefaults.standard.removeObject(forKey: "SelectedId")
     }
     
-
+    
+    @objc func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        txtDate.text = dateFormatter.string(from: sender.date)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return pickerValues.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        txtOccassion.text = pickerValues[row]
+        self.view.endEditing(true)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerValues[row]
+    }
+    
     /*
     // MARK: - Navigation
 
