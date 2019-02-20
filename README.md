@@ -1,4 +1,4 @@
-# BirthdayRemainder
+# BirthdayReminder
 BirthDay Remainder is a small application used to save the Birthday, Anniversary or any other event.
 
 ## Technical
